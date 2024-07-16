@@ -1,11 +1,13 @@
-import { CALCULATERESULT, SET_INPUT1, SET_INPUT2, SETOPERATOR,} from "../actions/Calculator_actions";
+import { CALCULATERESULT, SET_INPUT1, SET_INPUT2, SETACTIVEINPUT, SETOPERATOR,} from "../actions/Calculator_actions";
 
 
 const initialState={
     input1:0,
     input2:0,
-    operator:'',
-    result:0
+    operator:'+',
+    result:0,
+    operatorInput:"input1"
+    
 }
 
 const reducer=(state=initialState,action)=>{
@@ -25,8 +27,15 @@ const reducer=(state=initialState,action)=>{
             case SETOPERATOR:
             return{
                 ...state,
-                operator:action.payload
+                operator:action.payload,
+                operatorInput:"input1"
+
             };
+            case SETACTIVEINPUT:
+                return{
+                    ...state,
+                    operatorInput:action.payload
+                };
 
 
         case CALCULATERESULT:
