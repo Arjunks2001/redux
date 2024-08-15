@@ -2,7 +2,7 @@ import { CALCULATERESULT, SET_INPUT1, SET_INPUT2, SETACTIVEINPUT, SETOPERATOR,} 
 
 
 const initialState={
-    input1:0,
+    input1:[],
     input2:0,
     operator:'+',
     result:0,
