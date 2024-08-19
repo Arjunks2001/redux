@@ -68,3 +68,14 @@ export default MyCalendar;
             </p>
         
            </div>
+
+<div className='d-flex align-content-center justify-content-between'>
+  <div className='std_cricle_img'>
+    <img src={imgedit} alt="Uploaded" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
+  </div>
+  <p role="button" className="ms-2 mb-0">
+    image
+    <small><span><img src={imgedit} alt="Edit Icon" /></span></small>
+  </p>
+</div>
+
