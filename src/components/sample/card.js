@@ -45,3 +45,26 @@ const MyCalendar = () => {
 };
 
 export default MyCalendar;
+
+.std_cricle_img{
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 1px dotted #16FFBB;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;    
+    background-color: #16FFBB40;
+    color: #16FFBB;
+    font-weight: 700;
+  }
+
+<div className='std_cricle_img d-felx align-content-center justify-content-between '>
+           <p role="button" className=" ms-2 mb-0">
+            
+              image
+              <small> <span><img src={imgedit} className=''></img></span></small>
+            </p>
+        
+           </div>
