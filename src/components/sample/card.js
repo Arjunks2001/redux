@@ -98,4 +98,45 @@ function ImageUploader() {
 }
 
 export default ImageUploader;
+
+
+
+import React, { useRef, useState } from 'react';
+
+function ImageUploader() {
+  const [image, setImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
+
+  return (
+    <div className='d-flex align-content-center justify-content-between'>
+      <div
+        className='std_cricle_img'
+        onClick={() => fileInputRef.current.click()}
+        style={{ cursor: 'pointer' }}
+      >
+        {image ? (
+          <img src={image} alt="Uploaded" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
+        ) : (
+          <p role="button" className="ms-2 mb-0">image</p>
+        )}
+      </div>
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        onChange={handleImageChange}
+      />
+    </div>
+  );
+}
+
+export default ImageUploader;
+        
           
