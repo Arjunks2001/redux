@@ -1,142 +1,78 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-multi-carousel/lib/styles.css';
 
-const MyCalendar = () => {
-  const [date, setDate] = useState(new Date());
 
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
-  };
 
-  return (
-    <Calendar
-      // Basic props
-      value={date}                 // Selected date or range
-      onChange={handleDateChange}  // Function to handle date change
+import React from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import './CustomCarousel.css';
 
-      // Display options
-      locale="en-US"               // Locale for date formatting
-      minDate={new Date()}         // Minimum selectable date
-      maxDate={new Date(2024, 12, 31)} // Maximum selectable date
-      showNeighboringMonth={false} // Hide/show days from neighboring months
-      showWeekNumbers={false}      // Show/hide week numbers
-      showNavigation={true}        // Show/hide navigation buttons
-      prevLabel="<<"               // Custom label for the previous button
-      nextLabel=">>"               // Custom label for the next button
-      next2Label={null}            // Custom label for the next double arrow button (null to hide)
-      prev2Label={null}            // Custom label for the previous double arrow button (null to hide)
-      calendarType="ISO 8601"      // Calendar format (ISO 8601, US, Arabic, Hebrew)
-      tileDisabled={({ date, view }) => view === 'month' && date.getDay() === 0} // Disable specific dates
+const CustomCarousel = () => {
+    const responsive = {
+        superLargeDesktop: {
+            breakpoint: { max: 4000, min: 3000 },
+            items: 3
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
 
-      // Styling
-      className="my-custom-calendar" // Custom class name for styling
+    const items = [
+        { id: 1, title: 'Image 1' },
+        { id: 2, title: 'Image 2' },
+        { id: 3, title: 'Image 3' }
+    ];
 
-      // View options
-      view="month"                 // Current view (month, year, decade, century)
-      defaultView="month"          // Default view when first rendering
-      activeStartDate={new Date(2023, 6, 1)} // Initial date to start the calendar view
-
-      // Tile content
-      tileContent={({ date, view }) => view === 'month' && date.getDate() === 1 ? '🌟' : null} // Custom content for each tile
-      tileClassName={({ date, view }) => view === 'month' && date.getDay() === 6 ? 'highlight' : null} // Custom class for each tile
-    />
-  );
+    return (
+        <div className="container-fluid" style={{ backgroundColor: '#14151c', padding: '20px' }}>
+            <div className="row">
+                <div className="col">
+                    <Carousel 
+                        responsive={responsive} 
+                        infinite 
+                        autoPlay 
+                        autoPlaySpeed={3000} 
+                        arrows
+                        customLeftArrow={<i className="carousel-control-prev-icon" style={{ fontSize: '2em', color: '#00ffcc' }} />}
+                        customRightArrow={<i className="carousel-control-next-icon" style={{ fontSize: '2em', color: '#00ffcc' }} />}
+                    >
+                        {items.map(item => (
+                            <div key={item.id} className="card custom-card">
+                                <div className="card-body custom-content">
+                                    {item.title}
+                                </div>
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
+            </div>
+        </div>
+    );
 };
 
-export default MyCalendar;
-
-.std_cricle_img{
-    margin: 20px;
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    border: 1px dotted #16FFBB;
-    font-size: 12px;
-    line-height: 20px;
-    text-align: center;    
-    background-color: #16FFBB40;
-    color: #16FFBB;
-    font-weight: 700;
-  }
-
-<div className='std_cricle_img d-felx align-content-center justify-content-between '>
-           <p role="button" className=" ms-2 mb-0"> image</p>
-           </div>
+export default CustomCarousel;
 
 
-
-import React, { useState } from 'react';
-
-function ImageUploader() {
-  const [image, setImage] = useState(null);
-
-  const handleImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
-  };
-
-  return (
-    <div className='d-flex align-content-center justify-content-between'>
-      <div className='std_cricle_img' onClick={() => document.getElementById('imageUpload').click()}>
-        {image ? (
-          <img src={image} alt="Uploaded" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
-        ) : (
-          <p role="button" className="ms-2 mb-0">image</p>
-        )}
-      </div>
-      <input
-        type="file"
-        id="imageUpload"
-        accept="image/*"
-        style={{ display: 'none' }}
-        onChange={handleImageChange}
-      />
-    </div>
-  );
+                          .custom-card {
+    background: linear-gradient(145deg, #00ffcc, #009999);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    margin: 10px;
 }
 
-export default ImageUploader;
-
-
-
-import React, { useRef, useState } from 'react';
-
-function ImageUploader() {
-  const [image, setImage] = useState(null);
-  const fileInputRef = useRef(null);
-
-  const handleImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
-    }
-  };
-
-  return (
-    <div className='d-flex align-content-center justify-content-between'>
-      <div
-        className='std_cricle_img'
-        onClick={() => fileInputRef.current.click()}
-        style={{ cursor: 'pointer' }}
-      >
-        {image ? (
-          <img src={image} alt="Uploaded" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
-        ) : (
-          <p role="button" className="ms-2 mb-0">image</p>
-        )}
-      </div>
-      <input
-        type="file"
-        accept="image/*"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleImageChange}
-      />
-    </div>
-  );
+.custom-content {
+    color: #ffffff;
+    font-size: 1.5em;
 }
-
-export default ImageUploader;
-        
-          
