@@ -1,34 +1,44 @@
-import styled from "@emotion/styled";
-import { ErrorMessage } from "formik";
-import React from "react";
-const FormikErrorMsg = ({
-  name = "",
-  containerClassName = "mt-1 justify-content-end justify-content-lg-start",
-  textClassName = "",
-  height = "1rem",
-}) => {
-  const Container = styled("div")`
-    height: ${(props) => props.height};
-  `;
-
-  return (
-    <Container
-      height={height}
-      className={`${containerClassName} fontFam_nunito d-flex align-items-center w-100  text-danger`}
-    >
-      <ErrorMessage name={name}>
-        {(msg) => (
-          <>
-            <span
-              className={`${textClassName} ms-0 ms-lg-1  lh-sm fs_12 fw_600 fw-semibold`}
-            >
-              {msg + "!"}
-            </span>
-          </>
-        )}
-      </ErrorMessage>
-    </Container>
-  );
-};
-
-export default FormikErrorMsg;
+<div className='d-flex flex-column gap-2'>
+  <div className='d-flex flex-column flex-lg-row justify-content-between gap-3'>
+    <div className='d-flex flex-column flex-lg-row col-lg-5 gap-2'>
+      <div className='col-lg-3'>
+        <div className="input-group mb-2 std_profile_input_item">
+          <input
+            type="text"
+            className="form-control rounded-5"
+            placeholder="https://"
+          />
+        </div>
+      </div>
+      <div className='col-12 col-lg-9'>
+        <div className="input-group mb-2 std_profile_input_item">
+          <input
+            type="text"
+            className="form-control rounded-5"
+            placeholder="LinkedIn/Dribble/Github/etc"
+          />
+        </div>
+      </div>
+    </div>
+    <div className='d-flex flex-column flex-lg-row col-lg-5 gap-2'>
+      <div className='col-lg-3'>
+        <div className="input-group mb-2 std_profile_input_item">
+          <input
+            type="text"
+            className="form-control rounded-5"
+            placeholder="https://"
+          />
+        </div>
+      </div>
+      <div className='col-12 col-lg-8'>
+        <div className="input-group mb-2 std_profile_input_item">
+          <input
+            type="text"
+            className="form-control rounded-5"
+            placeholder="Add URL"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
